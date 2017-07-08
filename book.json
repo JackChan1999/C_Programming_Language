@@ -1,0 +1,10 @@
+{
+    "author": "JackChan",
+    "description": "C语言入门教程",
+    "gitbook": "3.2.2",
+    "language": "zh-hans",
+    "title": "C语言入门教程",
+    "pdf": {
+        "fontFamily": "等线"
+    }
+}
