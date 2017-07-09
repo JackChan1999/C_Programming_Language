@@ -1,3 +1,7 @@
+---
+typora-copy-images-to: images
+---
+
 ### 外部函数
 
 ```
@@ -24,3 +28,7 @@ static void show(int x){
 ### 虚拟地址
 
 ![](images/虚拟地址空间.png)
+
+### 函数调用模型变量传递分析
+
+![1499585103904](images/1499585103904.png)
