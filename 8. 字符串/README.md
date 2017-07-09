@@ -49,9 +49,9 @@ char* p = "hello";
 - puts()
 - printf()
 - scanf()
-- sprintf()
+- sprintf() 将一个整数转为一个字符串
 - atoi()
-- itoa()
+- itoa() 将整数转换为字符串
 
 ### 常用printf()格式字符
 
