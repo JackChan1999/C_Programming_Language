@@ -2,6 +2,10 @@
 typora-copy-images-to: images
 ---
 
+### 转义字符及其作用
+
+![1499574320749](images/1499574320749.png)
+
 ### 字符数组
 
 ```c
