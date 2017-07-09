@@ -4,6 +4,8 @@ typora-copy-images-to: images
 
 ### 转义字符及其作用
 
+![1499575197489](images/1499575197489.png)
+
 ![1499574320749](images/1499574320749.png)
 
 ### 字符数组
@@ -46,8 +48,17 @@ char* p = "hello";
 - gets() 读入用户输入的字符串
 - puts()
 - printf()
+- scanf()
 - sprintf()
 - atoi()
 - itoa()
+
+### 常用printf()格式字符
+
+![1499575313349](images/1499575313349.png)
+
+### 常用scanf()输入字符串的终止符
+
+![1499575414445](images/1499575414445.png)
 
 ### 字符串作函数参数
