@@ -8,6 +8,8 @@ typora-copy-images-to: images
 
 ### 字节对齐
 
+结构体字节对齐存储的原因是符合内存硬件的特性，访问速度性能高，但是牺牲了内存空间
+
 ```c
 struct {
 	char a;
@@ -24,6 +26,32 @@ struct {
 - 结构体变量的总大小是结构体最宽基本类型成员大小的整数倍
 
 ![1499570995879](images/1499570995879.png)
+
+```c
+#include<stdio.h>
+#include<stddef.h>
+
+/* Offset of member MEMBER in a struct of type TYPE. */
+// #define offsetof(TYPE, MEMBER) __builtin_offsetof (TYPE, MEMBER)
+// #define offsetof(TYPE, MEMBER) ((size_t) &((TYPE *)0)->MEMBER)
+
+typedef struct Test{
+	char a;
+	double b;
+	int c;
+	short d;
+} Test;
+
+int main(){
+	
+	printf("%d \n",offsetof(Test,a)); // 0
+	printf("%d \n",offsetof(Test,b)); // 8
+	printf("%d \n",offsetof(Test,c)); // 16
+	printf("%d \n",offsetof(Test,d)); // 20
+	
+	return 0;
+}
+```
 
 ### 结构体指针
 
