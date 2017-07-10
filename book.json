@@ -5,7 +5,6 @@
     "language": "zh-hans",
     "title": "C语言入门教程",
     "pdf": {
-        "fontFamily": "Arial",
-        "fontSize": 14
+        "fontFamily": "等线"
     }
 }
