@@ -10,54 +10,54 @@ Dev C++ 5.11 简体中文版下载地址：[官方下载](https://sourceforge.ne
 
 1) 首先加载安装程序（只需要几十秒）
 
-![img](http://c.biancheng.net/cpp/uploads/allimg/170607/1-1F60G14410D7.png)
+![img](images/1.27.png)
 
 3) 2) 开始安装
 
-![img](http://c.biancheng.net/cpp/uploads/allimg/170607/1-1F60G20212159.png)
+![img](images/1.28.png)
 
 Dev C++ 支持多国语言，包括简体中文，但是要等到安装完成以后才能设置，在安装过程中不能使用简体中文，所以这里我们选择英文（English）。
 
 3) 同意 Dev C++ 的各项条款
 
-![img](http://c.biancheng.net/cpp/uploads/allimg/170607/1-1F60G20A05N.png)
+![img](images/1.29.png)
 
 5) 4) 选择要安装的组件
 
-![img](http://c.biancheng.net/cpp/uploads/allimg/170607/1-1F60G20HS32.png)
+![img](images/1.30.png)
 
 选择“Full”，全部安装。
 
 5) 选择安装路径
 
-![img](http://c.biancheng.net/cpp/uploads/allimg/170607/1-1F60G20Q14Z.png)
+![img](images/1.31.png)
 
 你可以将 Dev C++ 安装在任意位置，但是路径中最好不要包含中文。
 
 6) 等待安装
 
-![img](http://c.biancheng.net/cpp/uploads/allimg/170607/1-1F60G210005B.png)
+![img](images/1.32.png)
 
 8) 7) 安装完成
 
-![img](http://c.biancheng.net/cpp/uploads/allimg/170607/1-1F60G21150349.png)
+![img](images/1.33.png)
 
 开始配置 Dev C++首次使用 Dev C++ 还需要简单的配置，包括设置语言、字体、和主题风格。
 
 1) 第一次启动 Dev C++ 后，提示选择语言。
 
-![img](http://c.biancheng.net/cpp/uploads/allimg/170607/1-1F60G24UQ61.png)
+![img](images/1.34.png)
 
 这里我们选择简体中文，英语给力的朋友也可以选择英文。
 
 2) 选择字体和主题风格
 
-![img](http://c.biancheng.net/cpp/uploads/allimg/170607/1-1F60G249595c.png)
+![img](images/1.35.png)
 
 这里保持默认即可。
 
 3) 提示设置成功
 
-![img](http://c.biancheng.net/cpp/uploads/allimg/170607/1-1F60G25042O6.png)
+![img](images/1.36.png)
 
 点击“OK”按钮，进入 Dev C++，就可以编写代码了。

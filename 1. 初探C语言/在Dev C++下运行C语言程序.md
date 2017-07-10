@@ -13,31 +13,31 @@ int main()
 
 Dev C++ 支持单个源文件的编译，如果你的程序只有一个源文件（初学者基本都是在单个源文件下编写代码），那么不用创建项目，直接运行就可以；如果有多个源文件，才需要创建项目。1) 新建源文件打开 Dev C++，在上方菜单栏中选择“文件 --> 新建 --> 源代码”：
 
-![img](http://c.biancheng.net/cpp/uploads/allimg/170607/1-1F60G33559D8.png)
+![img](images/1.37.png)
 
 或者按下`Ctrl+N`组合键，都会新建一个空白的源文件，如下图所示：
 
-![img](http://c.biancheng.net/cpp/uploads/allimg/170607/1-1F60G3414L26.png)
+![img](images/1.38.png)
 
 在空白文件中输入本文开头的代码：
 
-![img](http://c.biancheng.net/cpp/uploads/allimg/170607/1-1F60G346133X.png)
+![img](images/1.39.png)
 
 在上方菜单栏中选择“文件 --> 保存”，或者按下`Ctrl+S`组合键，都可以保存源文件。
 
-![img](http://c.biancheng.net/cpp/uploads/allimg/170607/1-1F60G35000I0.png)
+![img](images/1.40.png)
 
 注意将源文件后缀改为`.c`。
 
 小小的提示：C++是在C语言的基础上进行的扩展，C++已经包含了C语言的全部内容，所以大部分 IDE 默认创建的是C++文件。但是这并不影响使用，我们在填写源文件名称时把后缀改为`.c`即可，编译器会根据源文件的后缀来判断代码的种类。上图中，我们将源文件命名为`hello.c`。2) 生成可执行程序在上方菜单栏中选择“运行 --> 编译”，就可以完成 hello.c 源文件的编译工作。
 
-![img](http://c.biancheng.net/cpp/uploads/allimg/170607/1-1F60G4463YC.png)
+![img](images/1.41.png)
 
 或者直接按下`F9`键，也能够完成编译工作，这样更加便捷。
 
 如果代码没有错误，会在下方的“编译日志”窗口中看到编译成功的提示：
 
-![img](http://c.biancheng.net/cpp/uploads/allimg/170607/1-1F60G51452W8.png)
+![img](images/1.42.png)
 
 编译完成后，打开源文件所在的目录（本教程中是 E:\cDemo\），会看到多了一个名为`hello.exe`的文件，这就是最终生成的可执行文件。
 
@@ -62,17 +62,17 @@ int main()
 
 再次编译，运行生成的 hello.exe，终于如愿以偿，看到输出结果了，如下图所示：
 
-![img](http://c.biancheng.net/cpp/uploads/allimg/170607/1-1F60G52G1512.png)
+![img](images/1.43.png)
 
 按下键盘上的任意一个键，程序就会关闭。更加快捷的方式实际开发中我们一般使用菜单中的“编译 --> 编译运行”选项：
 
-![img](http://c.biancheng.net/cpp/uploads/allimg/170607/1-1F60G5321XN.png)
+![img](images/1.44.png)
 
 或者直接按下`F11`键，这样能够一键完成“编译 --> 链接 --> 运行”的全过程，不用再到文件夹中找到可执行程序再运行。这样做的另外一个好处是，编译器会让程序自动暂停，我们也不用再添加`system("pause");`语句了。
 
 删除上面代码中的`system("pause");`语句，按下F11键再次运行程序，结果如下：
 
-![img](http://c.biancheng.net/cpp/uploads/allimg/170607/1-1F60G54F4T8.png)
+![img](images/1.45.png)
 
 4) 总结现在，你就可以将 hello.exe 分享给你的朋友了，告诉他们这是你编写的第一个C语言程序。虽然这个程序非常简单，但是你已经越过了第一道障碍，学会了如何编写代码，如何将代码生成可执行程序，这是一个完整的体验。
 
