@@ -73,7 +73,7 @@ offsetof(struct test_struct,  fl) = 8
 
 其中代码难以理解的地方就是它灵活地运用了0地址。如果觉得`&( (struct test_struct *)0 )->ch`这样的代码不好理解，那么我们可以假设在0地址分配了一个结构体变量`struct test_struct a`，然后定义结构体指针变量p并指向`a（struct test_struct *p = &a）`，如此我们就可以通过`&p->ch`获得成员ch的地址。由于a的首地址为0x0，所以成员ch的首地址为0x4。
 
-![](http://hi.csdn.net/attachment/201111/27/0_13223947250nW0.gif)
+![](images/container_of.png)
 
 最后通过强制类型转换（size_t）把一个地址值转换为一个整数。
 
