@@ -77,6 +77,10 @@ void main()
 
 ### NULL到底是什么
 
+本质上是一个宏定义，在C语言中NULL本质是0，但是这个0不是当一个数字来解析，而是当一个内存地址来解析的，这个0其实就是0x00000000，代表内存的0地址。
+
+(void *)0这个整体表达式表示一个指针。这个指针变量本身占四个字节，地址指向哪里取决于指针变量本身，这个指针变量的值是0，也就是说这个指针变量指向0地址（实际是0地址开始的一段内存）
+
 ```c
 #ifdef __cplusplus
 #define NULL 0
@@ -84,6 +88,12 @@ void main()
 #define NULL ((void *)0)
 #endif
 ```
+
+```c
+int *p = NULL; // p的值是(void *)0的值，实际就是0，意思是指针p指向内存的0地址处
+```
+
+![1499701976789](images/1499701976789.png)
 
 ### 数组与指针
 
@@ -111,7 +121,9 @@ int * add(int x, int y);
 
 函数的入口地址就是函数指针
 
-```
+函数名的实质其实就是函数这段代码的首地址
+
+```c
 int (*p)(int, int);
 int add(int x, int y);
 p = add;
@@ -122,6 +134,77 @@ p = add;
 
 ```
 void func(int (*p)(int, int), int b, int n);
+```
+
+### 函数指针实战2——结构体内嵌函数指针实现分层
+
+cal.h
+
+```c
+#ifndef __CAL_H__
+#define __CAL_H__
+
+typedef int (*pFunc)(int, int);
+
+struct cal_t{
+	int a;
+	int b;
+	pFunc p;
+};
+
+int calculator(const struct cal_t *p);
+
+#endif
+```
+
+framework.c
+
+```c
+#include "cal.h"
+
+int calculator(const struct cal_t *p){
+	p->p(p->a, p->b);
+}
+```
+
+cal.c
+
+```c
+#include "cal.h"
+#include<stdio.h>
+
+int add(int a, int b){
+	return a + b;
+}
+
+int sub(int a, int b){
+	return a - b;
+}
+
+int multiply(int a, int b){
+	return a * b;
+}
+
+int divide(int a, int b){
+	return a / b;
+}
+
+int main(void){
+	
+	int ret = 0;
+	
+	struct cal_t myCal;
+	
+	myCal.a = 12;	
+	myCal.b = 4;
+	myCal.p = divide;
+	
+	ret = calculator(&myCal);
+	
+	printf("ret = %d.\n",ret);
+	
+	return 0;
+}
 ```
 
 ### 指针数组
@@ -142,6 +225,17 @@ int main(int argc, char *argv[]);
 - argv 参数是字符串指针数组，其各元素值为命令行中各字符串的首地址
 
 例如：`main.exe arg1 arg2 arg3` ，argc为4，argv指针数组中元素指向的字符串分别是：“main.exe”、 “arg1”、“arg2 ”、“arg3”
+
+### 分析数组指针与指针数组的表达式
+
+```c
+int (*p)[10]; // 数组指针
+int *p[10]; // 指针数组
+```
+
+规律：第一步找核心，第二步找结合（根据运算符优先级）
+
+如果核心和星号*结合，表示核心是指针；如果核心和中括号[]结合，表示核心是数组；如果核心和小括号()结合，表示核心是函数
 
 ### 内存申请
 
