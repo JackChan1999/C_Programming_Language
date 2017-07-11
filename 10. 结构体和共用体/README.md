@@ -10,6 +10,8 @@ typora-copy-images-to: images
 
 结构体字节对齐存储的原因是符合内存硬件的特性，访问速度性能高，但是牺牲了内存空间
 
+32位编译器，一般编译器默认对齐方式是4字节对齐
+
 ```c
 struct {
 	char a;
@@ -63,7 +65,31 @@ printf("%s\n", p->name);
 
 ### union
 
-允许多个成员使用同一块内存
+允许多个成员使用同一块内存，同一个内存空间有多种解释方式，union中的元素不存在内存对齐的问题
+
+```c
+struct mystruct {
+  	int a;
+  	char b;
+}
+union myunion{
+  	int a;
+  	char b;
+}
+int main(void){
+  	struct mystruct s1;
+  	s1.a = 23;
+  	printf("s1.b = %d.\n", s1.b); // s1.b = 0
+  	myunion u1;
+  	u1.a = 23;
+  	printf("u1.b = %d.\n", u1.b); // u1.b = 23
+  	// a 和 b 的地址一样，充分说明 a 和 b 指向同一块内存
+  	// 只是对这一块内存的解析规则有所不同
+  	return 0;
+}
+```
+
+![1499762916935](images/1499762916935.png)
 
 ### typedef —— 给数据类型取别名 
 
@@ -124,3 +150,8 @@ void main51()
 	return ;
 }
 ```
+### 大小端模式
+
+大端模式：高字节对应低地址
+
+小端模式：高字节对应高地址

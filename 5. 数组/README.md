@@ -289,6 +289,27 @@ void main331()
 }
 ```
 
+### 数组作函数参数的退化问题
+
+数组作函数参数，传参传递的只是数组首元素的首字节地址
+
+```c
+void fun(int buf[100]){ // 等价于 int buf[] 和 int *buf
+  	printf("%d\n", sizeof(buf)); // 4
+}
+
+int main(void){
+  	int buf[100];
+  	printf("%d\n", sizeof(buf)); // 400
+  	fun(buf);
+  	return 0;
+}
+
+void fun(int n, int buf[n]){ // [n]中的n只是起到说明的作用
+  	printf("%d\n", sizeof(buf));
+}
+```
+
 ### 指针数组的应用场景
 
 ```c

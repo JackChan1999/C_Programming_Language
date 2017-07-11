@@ -49,6 +49,10 @@ typora-copy-images-to: images
 ```c
 #include <iostream>
 #include "stdio"
+#pragma once // 防止头文件被重复包含
+#ifndef __CAL_H__ // 防止头文件被重复包含
+#define __CAL_H__
+#endif
 ```
 
 `# include<>`  和 `#include ""` 区别

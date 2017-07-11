@@ -223,7 +223,7 @@ int main(){
 
 	const typeof(((struct student*)0)->sex) *_mptr = &stu.sex;
 	//首先定义一个 _mptr指针， 类型为struct student结构体中sex成员的类型
-	//typeof 为获取（（（struct student＊）0）->sex)的类型，此处此类型为char
+	//typeof 为获取（（（struct student *）0）->sex)的类型，此处此类型为char
 	//（（struct student＊）0）在offsetof处讲解
 
 	offset = (int)(&((struct student *)0)->sex);
@@ -264,7 +264,7 @@ struct demo_struct *demop = ({
 const typeof( ((struct demo_struct *)0)->member3 ) *__mptr = (memp);
 (struct demo_struct *)( (char *)__mptr - offsetof(struct demo_struct, member3) );})
 ```
-其中，typeof是GNU C对标准C的扩展，它的作用是根据变量获取变量的类型。因此，上述代码中的第2行的作用是首先使用typeof获取结构体域变量member3的类型为 type3，然后定义了一个type3指针类型的临时变量__mptr，并将实际结构体变量中的域变量的指针memp的值赋给临时变量__mptr。
+其中，typeof是GNU C对标准C的扩展，它的作用是根据变量获取变量的类型。因此，上述代码中的第2行的作用是首先使用typeof获取结构体域变量member3的类型为 type3，然后定义了一个type3指针类型的临时变量`__mptr`，并将实际结构体变量中的域变量的指针memp的值赋给临时变量`__mptr`。
 
 假设结构体变量demo在实际内存中的位置如下图所示：
 ```
