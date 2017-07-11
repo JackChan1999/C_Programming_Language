@@ -70,6 +70,61 @@ p++ = (unsigned char )p+sizeof(a);
 - 建立关系，实参取地址赋给形参指针 
 - \*p形参去间接修改实参的值 
 
+```c
+int  getMem3(char **myp1, int *mylen1,  char **myp2, int *mylen2)
+{
+	int		ret = 0;
+	char	*tmp1, *tmp2;
+
+	tmp1 = (char *)malloc(100);
+	strcpy(tmp1, "1132233");
+
+	//间接赋值 
+	*mylen1 = strlen(tmp1);  //1级指针
+	*myp1 = tmp1; //2级指针的间接赋值
+
+	tmp2 = (char *)malloc(200);
+	strcpy(tmp2, "aaaaavbdddddddd");
+
+	*mylen2 = strlen(tmp2);  //1级指针
+	*myp2 = tmp2; //2级指针的间接赋值
+
+	return ret;
+}
+
+int  main35()
+{
+	int		ret = 0;
+	char	*p1 = NULL;
+	int		len1 = 0;
+	char	*p2 = NULL;
+	int		len2 = 0; 
+
+	ret = getMem3(&p1, &len1, &p2, &len2);
+	if (ret != 0)
+	{
+		printf("func getMem3() err:%d \n", ret);
+		return ret;
+	}
+	printf("p1:%s \n", p1);
+	printf("p2:%s \n", p2);
+	if (p1 != NULL)
+	{
+		free(p1);
+		p1 = NULL;
+	}
+	if (p2 != NULL)
+	{
+		free(p2);
+		p2 = NULL;
+	}
+
+	printf("p1:%d \n", p1);
+	system("pause");
+	return ret;
+}
+```
+
 #### 铁律3：理解指针必须和内存四区概念相结合
 
 （1）主调函数 被调函数 
@@ -82,6 +137,8 @@ p++ = (unsigned char )p+sizeof(a);
 - 指针做函数参数，是有输入和输出特性的。
 - 在主调用函数为指针分配内存，传给被调用函数，这种用法叫指针的输入in
 - 运算结果可以当作指针参数传进来，不要轻易改变形参的值，为了不改变形参的值，用一个辅助指针接收形参的值
+
+
 
 #### 铁律4：应用指针必须和函数调用相结合（指针做函数参数）
 
