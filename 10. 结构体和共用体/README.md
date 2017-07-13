@@ -55,6 +55,39 @@ int main(){
 }
 ```
 
+结构体中成员的地址相对于结构体首地址的偏移量
+
+```c
+typedef struct AdvTeacher
+{
+	char name[64]; //64
+	int age ;  //4
+	int p; //4
+	char *pname2;
+}AdvTeacher;
+
+void main()
+{
+	int i = 0;
+	AdvTeacher  t1; // & (t1.age)
+	AdvTeacher *p = NULL;
+	p = &t1;
+	{
+		int offsize1 = (int)&(p->age) - (int)p; // & (t1.age)
+		int offsize2 = (int )&(((AdvTeacher *)0)->age); 
+		printf("offsize1:%d \n", offsize1); // 64
+		printf("offsize2:%d \n", offsize2); // 64
+	}
+
+	system("pause");
+	return ;
+}
+```
+
+把t1的内存空间映射到0地址处开始的地方
+
+![1499870994236](images/1499870994236.png)
+
 ### 结构体指针
 
 ```c

@@ -125,6 +125,8 @@ int  main35()
 }
 ```
 
+![](images/指针间接赋值.png)
+
 #### 铁律3：理解指针必须和内存四区概念相结合
 
 （1）主调函数 被调函数 
@@ -138,15 +140,225 @@ int  main35()
 - 在主调用函数为指针分配内存，传给被调用函数，这种用法叫指针的输入in
 - 运算结果可以当作指针参数传进来，不要轻易改变形参的值，为了不改变形参的值，用一个辅助指针接收形参的值
 
-
-
 #### 铁律4：应用指针必须和函数调用相结合（指针做函数参数）
 
 ![1499783656269](images/1499783656269.png)
 
 #### 铁律5：一级指针典型用法（指针做函数参数）
 
+数组（int a[10]）作函数参数，会退化为指针
+
+字符串作函数参数
+
+- C语言的字符串，以0结尾的字符串
+- 在C语言中没有字符串类型，通过字符数组来模拟字符串
+- 字符串的内存分配，栈上、堆上、全局区
+
+```c
+void main()
+{
+	char buf[20]= "aaaa"; //定义并且初始化
+	char buf2[] = "bbbb";
+	char *p1 = "111111";
+	char *p2 = malloc(100); 
+	strcpy(p2, "3333");
+
+	system("pause");
+	return ;
+}
+```
+
+![1499825183889](images/1499825183889.png)
+
+```c
+char *str_cnct( char *x, char* y )
+{
+	if( x == NULL )
+	{
+		return NULL;
+	}
+	char * str3 = (char *) malloc( 80 )
+	char *z = str3; // 指针z指向数组str3
+	while ( *z++ = *x++ );
+	z--; // 去掉串尾结束标志
+	while ( *z++ = *y++ );
+	z = str3; // 将str3地址赋给指针变量z
+	return(z);
+}
+void main()
+{
+	Char *p = str_cnct( "abcd", "ddeee" );
+	If( p != NULL )
+	{
+		Free(p); 
+      	p = NULL;
+	} 
+	return;
+}
+```
+
 #### 铁律6：二级指针典型用法（指针做函数参数）
+
+二级指针三种内存模型图
+
+```c
+void main()
+{
+	int i = 0;
+	//指针数组
+	char * p1[] = {"123", "456", "789"};
+	//二维数组
+	char p2[3][4]  = {"123", "456", "789"};
+	//手工二维内存
+	char **p3 = (char **)malloc(3 * sizeof(char *)); //int array[3];
+	for (i=0; i<3; i++)
+	{
+		p3[i] = (char *)malloc(10*sizeof(char)); //char buf[10]
+		sprintf(p3[i], "%d%d%d", i, i, i);
+	}
+}
+```
+
+![](images/内存模型.png)
+
+```c
+int sort(char *p[], int count, char **p,int *ncount);
+int sort(char *p[], int count, char (*p)[30],int *ncount);
+int sort(char (*p)[30], int ncount,  char **p, int *ncount);
+
+//把第一种内存模型第二种内存模型结果copy到第三种内存模型中，并排序，打印
+char ** sort(char **p1, int num1, char(*p)[30], int num2, int *num3 );
+```
+
+```c
+#define  _CRT_SECURE_NO_WARNINGS 
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+
+int sort(char **myp1 /*in*/, int num1, char (*myp2)[30], int num2, char ***myp3, int *num3)
+{
+	int i = 0, j = 0, k= 0;
+	int  tmplen = 0;
+	char **p3 = NULL;
+	char *tmpP = NULL;
+	p3 = (char **)malloc( (num1 + num2) * sizeof(char *)  ); //里面装的是指针
+	if (p3 == NULL) 
+	{
+		return -1;
+	}
+	//根据长度分配内存空间
+	for (i=0; i<num1; i++)
+	{
+		tmplen= strlen(myp1[i]) + 1;
+		p3[i] = (char *)malloc( tmplen * sizeof(char)) ;
+		if (p3[i] == NULL)
+		{
+			return -2;
+		}
+		strcpy(p3[i], myp1[i]);
+	}
+
+	for (j=0; j<num2; j++, i++)
+	{
+		tmplen = strlen(myp2[j]) + 1;
+		p3[i] = (char *)malloc (tmplen * sizeof(char));
+		if (p3[i] == NULL)
+		{
+			return -3;
+		}
+		strcpy(p3[i], myp2[j]);
+	}
+
+	tmplen = num1 + num2;
+	//*num3 = num1 + num2;
+
+	//排序
+	for (i=0; i<tmplen; i++)
+	{
+		for (j=i+1; j<tmplen; j++)
+		{
+			if ( strcmp(p3[i], p3[j]) > 0 )
+			{
+				tmpP = p3[i];
+				p3[i] = p3[j];
+				p3[j] = tmpP;
+			}
+		}
+	}
+
+	//间接赋值
+	*num3 = tmplen;
+	*myp3 = p3;
+	return 0;
+}
+
+void sortFree01(char **p, int len)
+{
+	int i = 0;
+	if (p == NULL)
+	{
+		return ;
+	}
+
+	for (i=0; i<len ; i++)
+	{
+		free(p[i]);
+	}
+	free(p);
+}
+
+void sortFree02(char ***myp, int len) //把二级指针指向二维内存释放掉,,同时间接的修改了实参的值
+{
+	int i = 0;
+	char **p = NULL;
+	if (myp == NULL)
+	{
+		return ;
+	}
+
+	p  = *myp; //还原成二级指针
+	if (p == NULL)
+	{
+		return ;
+	}
+
+	for (i=0; i<len ; i++)
+	{
+		free(p[i]);
+	}
+	free(p);
+	//myp 是实参的地址
+	*myp = NULL; //间接赋值是指针存在的最大意义
+}
+
+int  main()
+{
+	int ret = 0;
+	char *p1[] = {"aaaa", "cccc", "bbbb"};
+	char buf2[10][30] = {"1111", "3333", "2222"};
+	char **p3 = NULL;
+	int len1, len2, len3, i = 0;
+
+	len1 = sizeof(p1)/sizeof(*p1);
+	len2 = 3;
+
+	ret = sort(p1, len1, buf2, len2, &p3, &len3);
+	if (ret != 0)
+	{
+		printf("func sort() err:%d \n", ret);
+		return ret;
+	}
+
+	for (i=0; i<len3; i++)
+	{
+		printf("%s\n", p3[i]);
+	}
+
+	system("pause");
+	return ret;
+}
+```
 
 #### 铁律7： 三级指针输出典型用法
 
@@ -162,6 +374,22 @@ int  main35()
 - C/C++语言有它自己的学习特点；若java语言的学习特点是学习、应用、上项目；那么C/C++语言的学习特点是：学习、理解、应用、上项目。多了一个步骤吧。
 - 学好指针才学会了C语言的半壁江山，另外半壁江山在哪里呢？
 - 理解指针关键在内存，没有内存哪来的内存首地址，没有内存首地址，哪来的指针啊。
+
+### 变量空间的首字节地址，作为整个空间的地址
+
+实际上，内存中的每一个字节空间都有一个地址，如果是内核有32根地址线，地址以二进制表示，其最大可寻址范围是
+
+0000000 0000000 0000000 0000000 ~ 11111111 11111111 11111111 11111111
+
+地址的十六进制表示
+
+![1499868834530](images/1499868834530.png)
+
+0xffffff：16<sup>8</sup> = 2<sup>32</sup> = 4G
+
+既然每个字节对应的地址都是32位的，那么所有存放地址的指针变量大小也应该是32位的，即4个字节。64位系统同理。
+
+当我们说一个地址的时候，指的就是一个字节的地址，比如 int a 的空间大小有4个字节，每个字节都有一个地址，但只有首字节地址才能作为整个a空间的地址。&a代表的就是第一个字节的地址。拿到了空间的首地址后，同时 int 类型又明确了空间大小是4个字节，所以从首地址字节顺延3个字节的空间，一共4个字节作为整个变量的空间。
 
 ### 万能指针
 

@@ -1,4 +1,4 @@
-# 目录
+## 目录
 
 * [第1章 编程基础](0. 编程基础/README.md)
     * [与编程相关的计算机硬件](0. 编程基础/6. 与编程相关的计算机硬件.md)
@@ -50,5 +50,15 @@
    * [联合体](10. 结构体和共用体/联合体.md)
    * [offsetof宏](10. 结构体和共用体/offsetof宏.md)
    * [container_of宏](10. 结构体和共用体/container_of宏.md)
+   * [接口的封装和设计](10. 结构体和共用体/接口的封装和设计.md)
 * [第12章 基本数据结构](11. 基本数据结构/README.md)
 * [第13章 文件操作](12. 文件操作/README.md)
+
+## 关注我
+
+- Email：<815712739@qq.com>
+- CSDN博客：[Allen Iverson](http://blog.csdn.net/axi295309066)
+- 新浪微博：[AndroidDeveloper](http://weibo.com/u/1848214604?topnav=1&wvr=6&topsug=1&is_all=1)
+- GitHub：[JackChan1999](https://github.com/JackChan1999)
+- GitBook：[alleniverson](https://www.gitbook.com/@alleniverson)
+- 个人博客：[JackChan](https://jackchan1999.github.io/)
