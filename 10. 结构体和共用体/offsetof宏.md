@@ -1,3 +1,7 @@
+---
+typora-copy-images-to: images
+---
+
 ### offsetof 宏
 
 计算结构体中某元素相对于结构体首字节地址的偏移量
@@ -13,6 +17,7 @@ offsetof宏返回的是MEMBER成员在内存中的实际地址。又因为整个
 // 这个宏返回的是MEMBER元素相对于整个结构体变量的首地址的偏移量，类型是 int
 // & ((TYPE *)0)->MEMBER 等价于 & (((TYPE *)0)->MEMBER) - & (((TYPE *)0)
 ```
+![1500258263590](images/1500258263590.png)
 ```c
 #include <stdio.h>  
 #define offsetof(TYPE,MEMBER) ((int) &((TYPE *)0)->MEMBER)  

@@ -421,6 +421,36 @@ printf("a = %d\n", a);
 
 ![1500178806133](images/1500178806133.png)
 
+#### void的作用
+
+- 对函数参数的限定：当不需要传入参数时，即 `function (void);`
+- 对函数返回值的限定：当函数没有返回值时，即 `void function(void);`
+
+#### void指针的作用
+
+（1）void指针可以指向任意的数据类型，即任意类型的指针可以赋值给void指针
+
+```c
+int *a;
+void *p;
+p=a;
+```
+如果void指针赋值给其他类型，则需要强制转换；`a=（int *）p;`
+
+（2）在ANSI C标准中不允许对void指针进行算术运算，因为没有特定的数据类型，即在内存中不知道移动多少个字节；而在GNU标准中，认为void指针和char指针等同。
+
+#### 应用
+
+（1）void指针一般用于应用的底层，比如malloc函数的返回类型是void指针，需要再强制转换；
+（2）文件句柄HANDLE也是void指针类型，这也是句柄和指针的区别；
+（3）内存操作函数的原型也需要void指针限定传入参数：
+
+```c
+void * memcpy (void *dest, const void *src, size_t len);
+void * memset (void *buffer, int c, size_t num );
+```
+（4）面向对象函数中底层对基类的抽象。
+
 ### 野指针产生的原因
 
 指针变量和它所指向的内存空间变量是两个不同的概念
@@ -468,6 +498,8 @@ void main()
 ![1500217329455](images/1500217329455.png)
 
 本质上是一个宏定义，在C语言中NULL本质是0，但是这个0不是当一个数字来解析，而是当一个内存地址来解析的，这个0其实就是0x00000000，代表内存的0地址。
+
+NUL是ASCII码表的第一个字符，表示的是空字符，其ASCII码值为0
 
 (void *)0这个整体表达式表示一个指针。这个指针变量本身占四个字节，地址指向哪里取决于指针变量本身，这个指针变量的值是0，也就是说这个指针变量指向0地址（实际是0地址开始的一段内存）
 
@@ -896,6 +928,37 @@ void main(){
 ```
 
 内存泄露：也称作“内存渗漏”，用动态存储分配函数动态开辟的空间，在使用完毕后未释放，结果导致一直占据该内存单元，直到程序结束（即该内存空间使用完毕之后未回收），即所谓内存泄露。
+
+无法把指针变量本身传递给一个函数
+
+```c
+void GetMemory(char *p, int num){
+  	p = (char *)malloc(sizeof(char)*num);
+}
+int main(){
+  	char *str = NULL;
+  	GetMemory(str, 100); // str 仍然为NULL
+  	strcopy(str, "hello"); // 运行时错误
+  	free(str); // free 并没有起作用，内存泄露
+  	return 0;
+}
+```
+
+使用二级指针作函数参数去申请内存
+
+```c
+void GetMemory(char **p, int num){
+  	*p = (char *)malloc(sizeof(char)*num); // 间接赋值是指针存在的最大意义
+}
+int main(){
+  	char *str = NULL;
+  	GetMemory(&str, 100);
+  	strcopy(str, "hello"); // ok
+  	cout<<str<<endl;
+  	free(str); // ok
+  	return 0;
+}
+```
 
 ### 内存操作
 

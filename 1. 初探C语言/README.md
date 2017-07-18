@@ -1,6 +1,6 @@
 这一章主要是带大家搭建起开发环境，并实际运行几个C语言程序，从此开始C语言的学习。
 
-> 本章内容：
+本章内容：
 
 - [C语言在屏幕上显示内容](http://c.biancheng.net/cpp/html/2882.html)
 - [C语言编译器和IDE的选择](http://c.biancheng.net/cpp/html/2886.html)
