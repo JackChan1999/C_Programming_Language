@@ -13,6 +13,121 @@ typora-copy-images-to: images
 - 常量和变量
 - 运算符
 
+### 补码
+
+正数：原码 = 反码 = 补码，负数：反码 = 原码取反，补码 = 原码取反加1
+
+负数以补码的形式在计算机中存储
+
+```c
+#include<stdio.h>
+#include<stdlib.h>
+
+void main3()
+{
+	//printf不会进行数据类型转换
+	printf("%d", (int)10.3);//printf不管你是什么类型，按照%d ,%f解析数据
+	printf("\n%f", (float)10);
+	getchar();
+}
+
+void  main4()
+{
+	int num = 100;
+	printf("%p", &num);//不同的解释方式就有不同的解释结果
+
+	getchar();
+}
+
+void   main5()
+{
+	char ch = 1,ch1='1';//字符与编号的区别
+	printf("%d,%d", ch,ch1);
+
+	getchar();
+}
+
+void   main6()
+{
+	//解析的时候，与数据的长度有关系
+	unsigned short num = 65535+1;
+	printf("刘宁波有%d元", num);
+	//  99
+	// 100
+	getchar();
+}
+
+void   main7()
+{
+	//补码，计算机存储数据的方式
+	short num = -1;
+	printf("%d", num);
+	printf("\n%u", num);//%u 0-正整数
+
+	getchar();
+}
+```
+
+### 计算机补码原理
+
+```c
+#include<stdio.h>
+#include<stdlib.h>
+#include<limits.h>
+
+void main10()
+{
+	int x = 1;
+	int y = -1;//补码
+
+	printf("x=%p,y=%p", &x, &y);
+  
+	system("pause");
+}
+
+void  main123()
+{
+	//int  unsigned int  4个字节32位
+	//有符号，0代表正数，1代表负数
+
+	//0111 1111 1111 1111 1111 1111 1111 1111
+	//1111 1111 1111 1111 1111 1111 1111 1111//无符号，正数，全部都是数据
+
+	printf("%d,%d", INT_MAX, INT_MIN);//%d只能显示INT_MIN->INT_MAX
+	printf("\n%d,%d", INT_MAX+1, INT_MIN-1);
+	printf("\n%u,%u", UINT_MAX, 0);
+	printf("\n%u,%u", UINT_MAX+1, 0-1);//%u   0->UINT_MAX
+
+	system("pause");
+}
+
+void main1234()
+{
+	int x = 4294967295;
+	int y = -1;
+	//1111 1111 1111 1111 1111 1111 1111 1111内存的存储方式
+	//无符号，没有符号位，全部都是数据 4294967295
+
+	//0000 0000 0000 0000  0000 0000 0000 0001 1原码
+	//1000 0000 0000 0000  0000 0000 0000 0001 -1的原码
+	//1111 1111 1111 1111  1111 1111 1111 1110 -1的反码
+	//1111 1111 1111 1111  1111 1111 1111 1111 -1的补码
+	
+	printf("%d，%u", x,x);
+	printf("\n%d,%u", y, y);
+	getchar();
+}
+
+void  main()
+{
+	unsigned int num = -1;
+	//1111 1111 1111 1111 1111 1111 1111 1111内存的存储方式
+	printf("%d,%u", num, num);
+
+	system("pause");
+}
+```
+
 ### 常量与变量
 
 关键字
