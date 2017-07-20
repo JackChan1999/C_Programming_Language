@@ -263,6 +263,8 @@ void main222()
 
 ![1499597705463](images/1499597705463.png)
 
+![多维数组](images/多维数组.png)
+
 ```c
 void printfArray01(int *array, int size)
 {

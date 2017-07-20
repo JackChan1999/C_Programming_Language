@@ -55,3 +55,25 @@ Windows 下的 IDE 比较多，我推荐使用 Visual Studio 或者 Dev C++；�
 接下来的几节我们会讲解各种 IDE 的使用，也即如何在 Windows、Linux、Mac OS X 下运行C语言程序。
 
 如果读者还未配备一台电脑，或者当前不方便使用电脑，也可以在手机上运行C语言程序，这将在《[在手机上运行C语言程序](http://c.biancheng.net/cpp/html/3164.html)》一节中详细讲解。
+
+## 开发环境
+
+### 主流开发工具介绍
+
+C语言常用的几种主流开发工具
+
+- Visual Studio
+
+Visual Studio（简称VS）是由微软公司发布的集成开发环境。它包括了整个软件生命周期中所需要的大部分工具。
+
+- Code::Block
+
+Code::Block是一个免费的跨平台IDE。最大特点是它支持通过插件的方式对IDE自身功能进行扩展。
+
+- Eclipse
+
+Eclipse是一种被广泛使用的免费跨平台IDE，用户可以根据需要安装多种不同的插件来扩展Eclipse的功能。
+
+- Vim
+
+Vim本身并不是一个用于开发计算机程序的IDE，而是一款功能非常强大的文本编辑器，它是UNIX系统上Vi编辑器的升级版。

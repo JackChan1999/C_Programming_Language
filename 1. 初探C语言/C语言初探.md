@@ -2,6 +2,31 @@
 typora-copy-images-to: images
 ---
 
+### C语言历史与特点
+
+#### C语言的起源与发展
+
+- 1963年，剑桥大学将ALGOL 60语言发展成为CPL(Combined Programming Language)语言。
+- 1967年，剑桥大学的马丁·理查兹（Matin Richards）对CPL语言进行了简化，于是产生了BCPL语言。
+- 1970年，美国贝尔实验室的肯·汤普森（Ken Thompson）将BCPL进行了修改，并为它起了一个有趣的名字——“B语言”，其含义是将CPL语言煮干，提炼出它的精华，同时他用B语言写了第一个UNIX操作系统。
+- 1973年，美国贝尔实验室的丹尼斯·里奇（Dennis M.Ritchie）在B语言的基础上设计出了一种新的语言，他取了BCPL的第二个字母作为这种语言的名字，即C语言
+
+美国国家标准学会（ANSI）为C语言制定了一套ANSI标准，即C语言标准。
+
+- 在1989年美国国家标准学会(ANSI）通过的C语言标准ANSI X3.159-1989，被称为C89 。
+- 在1990年，国际标准化组织ISO批准了ANSI C成为国际标准，于是ISO C诞生了，该标准被称为C90。
+- 在1994年、1996年分别出版了C90的技术勘误文档，更正了一些印刷错误，ISO于并在1995年通过了一份C90的技术补充，对C90进行了微小的扩充，经扩充后的ISO C被成为C95 。
+- 1999年，ANSI和ISO又通过了C99标准。
+
+### C语言的特点
+
+- C语言简洁、紧凑，使用方便、灵活，具有丰富的运算符和数据结构。
+- C语言既具有高级语言的功能，又具有低级语言的许多功能。
+- C语言是理想的结构化程序设计语言，符合现代编程风格的要求。
+- C语言语法限制不太严格，程序设计自由度大。
+- C语言编写的程序可移植性好（与汇编语言相比）。
+- C语言生成目标代码质量高，程序执行效率高。
+
 ### C语言应用领域
 
 C语言的应用极其广泛，从网站后台，到底层操作系统，从多媒体应用到大型网络游戏，均可使用C语言来开发：
@@ -158,6 +183,32 @@ gcc hello.c -o demo
 - C语言的目标是高效，最终程序执行效率的高效
 - C/C++中用回调函数（函数指针）实现类似Java中的接口回调的功能
 - C/C++通过汇编实现反射机制较难（提供了友元），Java因为.java文件会编译成.class字节码文件，可以较容易的实现反射机制（AOP）
+
+### 入门书籍
+
+#### C语言开发入门教程
+
+- 视频链接：https://pan.baidu.com/s/1c1Yjr80 密码: idtn
+- 答案链接：http://pan.baidu.com/s/1hsbk2tm 密码：g81c
+- 源码链接：http://pan.baidu.com/s/1jHL7up4 密码：hafs
+- 题库链接：http://pan.baidu.com/s/1c17604g 密码：vqfw
+- 方案链接：http://pan.baidu.com/s/1hsbk2tm 密码：g81c
+
+#### C语言程序设计教程
+
+- 视频链接：http://pan.baidu.com/s/1kVmaT0r 密码：twv7
+- 答案链接：http://pan.baidu.com/s/1kUMmNrh 密码：5jso
+- 源码链接：http://pan.baidu.com/s/1kVCsf9X 密码：weo8
+- 题库链接：http://pan.baidu.com/s/1c17604g 密码：vqfw
+- 方案链接：http://pan.baidu.com/s/1hrXgG8s 密码：1flr
+
+#### C++程序设计教程
+
+- 视频链接：http://pan.baidu.com/s/1o78Fkh0 密码：ourc
+- 题库链接：http://pan.baidu.com/s/1qYVKIyo 密码：xkgz
+- 答案链接：http://pan.baidu.com/s/1pLhbNmV 密码：vnrr
+- 源码链接：http://pan.baidu.com/s/1i4VINrR 密码：dbec
+- 方案链接：http://pan.baidu.com/s/1dFFSjmx 密码：8fqh
 
 ### 经典书籍
 
