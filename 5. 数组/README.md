@@ -497,3 +497,56 @@ void main()
 	system("pause");
 }
 ```
+### 斐波那契数列
+
+```c
+#include <math.h>
+int main()
+{
+	int arr[20] = { 1, 1 };
+	int i;
+	for (i =2; i < 20; i++) //i从2开始
+	{
+		arr[i] = arr[i - 1] + arr[i - 2];
+	}
+	for (i = 0; i < 20; i++)
+	{
+		if (i % 5 == 0)  //第5个元素就换行
+			printf("\n");  
+		printf("%-5d", arr[i]);
+	}
+	system("pause");
+}
+```
+
+### 打印杨辉三角
+
+```c
+#include<stdio.h>
+#include<stdlib.h>
+void main()
+{
+	int i, j, n = 0;
+	int arr[10][10] = { 1 }; //定义一个10行10列的二维数组，初始化为1
+	
+	while (n < 1 || n > 10)  //此while循环控制用户只能输入n = 10
+	{
+		printf("请输入n的值：\n");
+		scanf("%d", &n);
+	}
+	for (i = 1; i < n; i++)  //外层循环控制杨辉三角的行数
+	{
+		arr[i][0] = 1;         //每一行第1个元素都赋值为1，即第1列都为1
+		for (j = 1; j <= i; j++)    //内层控制杨辉三角的列数
+              //每个元素等于其上一行左边和上边两个元素之和
+			arr[i][j] = arr[i - 1][j - 1] + arr[i - 1][j];
+	}
+	for (i = 0; i < n; i++)  //双重for循环打印这个二维数组中的元素
+	{
+		for (j = 0; j <= i; j++)
+			printf("%-5d", arr[i][j]);
+		printf("\n");
+	}
+	system("pause");
+}
+```

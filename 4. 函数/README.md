@@ -47,22 +47,22 @@ static void show(int x){
 
 字符串函数，声明在string.h中
 
-| 函数声明    | 功能描述 |
-| ------- | ---- |
-| memcpy  |      |
-| memmove |      |
-| memset  |      |
-| memcmp  |      |
-| memchr  |      |
-| strcpy  |      |
-| strncpy |      |
-| strcmp  |      |
-| strncm  |      |
-| strdup  |      |
-| strndup |      |
-| strchr  |      |
-| strstr  |      |
-| strtok  |      |
+| 函数声明    | 功能描述  |
+| ------- | ----- |
+| memcpy  |       |
+| memmove |       |
+| memset  |       |
+| memcmp  |       |
+| memchr  |       |
+| strcpy  | 字符串拷贝 |
+| strncpy |       |
+| strcmp  | 字符串比较 |
+| strncm  |       |
+| strdup  |       |
+| strndup |       |
+| strchr  |       |
+| strstr  |       |
+| strtok  |       |
 
 man手册
 
