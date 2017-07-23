@@ -44,13 +44,36 @@ C语言的应用极其广泛，从网站后台，到底层操作系统，从多�
 
 C语言仅有32个关键字，9种控制语句，34种运算符，却能完成无数的功能
 
-![1499774238215](images/1499774238215.png)
+所谓关键字是指在编程语言里事先定义好并赋予了特殊含义的单词，也称作保留字。关键字在程序中用于表示特殊含义，不能被随便用作变量名、函数名等，在C语言中，C89标准中共定义了37个关键字，具体如下：
 
-![1499774252454](images/1499774252454.png)
+32个关键字，由系统定义，不能重作其它定义
+
+| auto     | break  | case     | default  | const   |
+| -------- | ------ | -------- | -------- | ------- |
+| continue | do     | while    | goto     | typedef |
+| char     | short  | int      | double   | float   |
+| long     | if     | else     | register | return  |
+| for      | sizeof | static   | struct   | union   |
+| switch   | signed | unsigned | enum     | void    |
+| volatile | extern |          |          |         |
+
+9种控制语句
+
+- if()~else~
+- for()~
+- while()~
+- do~while()
+- continute
+- break
+- switch
+- goto
+- return
 
 ![1499774266009](images/1499774266009.png)
 
 ### C语言标准
+
+在1989年美国国家标准学会(ANSI）通过的C语言标准ANSI X3.159-1989被称为C89。之后在1990年，国际标准化组织ISO也接受了同样的标准ISO9899-1990，该标准被称为C90。1999年ANSI又通过了C99标准。C99标准相对C89做了很多修改，例如变量声明可以不放在函数开头，支持变长数组等。但由于很多编译器仍然没有对C99提供完整的支持，因此本书将按照C89标准来进行讲解，在适当时会补充C99标准的规定和用法。
 
 - ANSI/ISO C 标准，通常叫 C89 或 C90 标准，ANSI 美国国家标准协会
 - C99 标准
@@ -184,39 +207,3 @@ gcc hello.c -o demo
 - C/C++中用回调函数（函数指针）实现类似Java中的接口回调的功能
 - C/C++通过汇编实现反射机制较难（提供了友元），Java因为.java文件会编译成.class字节码文件，可以较容易的实现反射机制（AOP）
 - C/C++中没有package机制
-
-### 入门书籍
-
-#### C语言开发入门教程
-
-- 视频链接：https://pan.baidu.com/s/1c1Yjr80 密码: idtn
-- 答案链接：http://pan.baidu.com/s/1hsbk2tm 密码：g81c
-- 源码链接：http://pan.baidu.com/s/1jHL7up4 密码：hafs
-- 题库链接：http://pan.baidu.com/s/1c17604g 密码：vqfw
-- 方案链接：http://pan.baidu.com/s/1hsbk2tm 密码：g81c
-
-#### C语言程序设计教程
-
-- 视频链接：http://pan.baidu.com/s/1kVmaT0r 密码：twv7
-- 答案链接：http://pan.baidu.com/s/1kUMmNrh 密码：5jso
-- 源码链接：http://pan.baidu.com/s/1kVCsf9X 密码：weo8
-- 题库链接：http://pan.baidu.com/s/1c17604g 密码：vqfw
-- 方案链接：http://pan.baidu.com/s/1hrXgG8s 密码：1flr
-
-#### C++程序设计教程
-
-- 视频链接：http://pan.baidu.com/s/1o78Fkh0 密码：ourc
-- 题库链接：http://pan.baidu.com/s/1qYVKIyo 密码：xkgz
-- 答案链接：http://pan.baidu.com/s/1pLhbNmV 密码：vnrr
-- 源码链接：http://pan.baidu.com/s/1i4VINrR 密码：dbec
-- 方案链接：http://pan.baidu.com/s/1dFFSjmx 密码：8fqh
-
-### 经典书籍
-
-- c primer plus 第6版
-- C语言深度解剖 解开程序员面试笔记的秘密
-- 嵌入式Linux与物联网软件开发 C语言内核深度解析
-- C语言接口与实现
-- C和指针
-- C陷阱与缺陷
-- C专家编程
