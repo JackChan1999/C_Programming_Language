@@ -1,6 +1,10 @@
+---
+typora-copy-images-to: images
+---
+
 句柄是什么？在Windows中，句柄的存在就像指针的标识一样，但这样的答案显示不是你们需要的。闲暇之余，笔者摘录以下Windows句柄的解释。用户可以端着咖啡再看Windows结构体里面句柄的作用表述。
 
-![句柄是什么？Windows结构体里面句柄的作用](http://www.xitongzhijia.net/uploads/allimg/170322/76-1F322105917-50-water.jpg)
+![句柄](images/1500789261478.png)
 
 这里我列举词条中的关于句柄的叙述不当之处，至于如何不当先不管，继续往下看就会明白：
 

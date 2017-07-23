@@ -284,7 +284,7 @@ a 6487536 , a+1:6487556
 ![多维数组](images/多维数组.png)
 
 ```c
-void printfArray01(int *array, int size)
+void printfArray(int *array, int size)
 {
 	int  i = 0;
 	for (i=0; i<size; i++)
@@ -292,7 +292,7 @@ void printfArray01(int *array, int size)
 		printf("%d ", array[i]);
 	}
 }
-void main331()
+void main()
 {
 	int a[3][5];
 	int i, j, tmp = 1;
@@ -306,11 +306,17 @@ void main331()
 	}
 
 	//把二维数组当成一维数组来打印证明线性存储
-	printfArray01((int *)a, 15);
+	printfArray((int *)a, 15);
 
 	system("pause");
 	return ;
 }
+```
+
+运行结果
+
+```
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
 ```
 
 ### 数组作函数参数的退化问题
@@ -344,8 +350,9 @@ void fun(int n, int buf[n]){ // [n]中的n只是起到说明的作用
 
 ### 指针数组的应用场景
 
+#### 求关键字在表中的位置
+
 ```c
-//求关键字在表中的位置
 //一个入口多个出口
 int searcheKeyTable(const char* table[], const int size, const char* key, int *pos)
 {
@@ -382,7 +389,7 @@ int searcheKeyTable(const char* table[], const int size, const char* key, int *p
 
 #define DIM(a) (sizeof(a)/sizeof(*a))
 
-int main411()
+int main()
 {
 	int inum = 0;
 	int pos = 0;
@@ -409,10 +416,9 @@ int main411()
 	system("pause");
 	return ;
 }
-
 ```
 
-命令行参数
+#### 命令行参数
 
 ```c
 //main函数是操作系统调用的函数
@@ -421,19 +427,18 @@ int main411()
 /*
 argc 命令行参数
 argv 命令行参数数组
-env  函数变量数组
+env  环境变量数组
 
 int main();
 int main(int argc);
 int main(int argc, char *argv[])
 */
 
-int main477(int argc, char* argv[], char**env)
+int main(int argc, char* argv[], char**env)
 {
 	int i = 0;
-	//main02_1();
 
-	printf("******************* Begin argv *******************\n");
+	printf("---------- Begin argv ----------\n");
 	for(i=0; i<argc; i++)
 	{
 		printf("%s\n", argv[i]);
@@ -443,26 +448,24 @@ int main477(int argc, char* argv[], char**env)
 	// 	{
 	// 		printf("%s\n", argv[i]);
 	// 	}
-	printf("******************* End argv *******************\n");
+	printf("---------- End argv ----------\n");
 
 	printf("\n");
-	printf("\n");
-	printf("\n");
 
-	printf("******************* Begin env *******************\n");
+	printf("---------- Begin env ----------\n");
 
 	for(i=0; env[i]!=NULL; i++)
 	{
 		printf("%s\n", env[i]);
 	}
 
-	printf("******************* End env*******************\n");
+	printf("---------- End env ----------\n");
 
 	getchar();
 }
 ```
 
-指针数组的自我结束能力
+#### 指针数组的自我结束能力
 
 ```c
 void main()
@@ -487,7 +490,6 @@ void main()
 		"do",
 		0
 	}; 
-
 
 	char*   c_keyword3[] = {
 		"while", 
@@ -537,6 +539,15 @@ int main()
 }
 ```
 
+运行结果
+
+```
+1    1    2    3    5
+8    13   21   34   55
+89   144  233  377  610
+987  1597 2584 4181 6765
+```
+
 ### 打印杨辉三角
 
 ```c
@@ -567,4 +578,18 @@ void main()
 	}
 	system("pause");
 }
+```
+运行结果（n = 10）
+
+```
+1
+1    1
+1    2    1
+1    3    3    1
+1    4    6    4    1
+1    5    10   10   5    1
+1    6    15   20   15   6    1
+1    7    21   35   35   21   7    1
+1    8    28   56   70   56   28   8    1
+1    9    36   84   126  126  84   36   9    1
 ```
