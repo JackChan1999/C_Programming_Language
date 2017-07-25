@@ -57,3 +57,85 @@ void * memcpy (void *dest, const void *src, size_t len);
 void * memset (void *buffer, int c, size_t num );
 ```
 （4）面向对象函数中底层对基类的抽象。
+
+### 千万小心又小心使用void 指针类型
+
+按照ANSI(American National Standards Institute)标准，不能对void 指针进行算法操作，即下列操作都是不合法的：
+
+```c
+void * pvoid;
+pvoid++; //ANSI：错误
+pvoid += 1; //ANSI：错误
+```
+
+ANSI 标准之所以这样认定，是因为它坚持：进行算法操作的指针必须是确定知道其指向数据类型大小的。也就是说必须知道内存目的地址的确切值。
+
+例如：
+
+```c
+int *pint;
+pint++; //ANSI：正确
+```
+
+但是大名鼎鼎的GNU(GNU's Not Unix 的递归缩写)则不这么认定，它指定void \*的算法操作与char \*一致。因此下列语句在GNU 编译器中皆正确：
+
+```c
+pvoid++; //GNU：正确
+pvoid += 1; //GNU：正确
+```
+
+在实际的程序设计中，为符合ANSI 标准，并提高程序的可移植性，我们可以这样编写实现同样功能的代码：
+
+```c
+void * pvoid;
+(char *)pvoid++; //ANSI：正确；GNU：正确
+(char *)pvoid += 1; //ANSI：错误；GNU：正确
+```
+
+GNU 和ANSI 还有一些区别，总体而言，GNU 较ANSI 更“开放”，提供了对更多语法的支持。但是我们在真实设计时，还是应该尽可能地符合ANSI 标准。
+
+### 如果函数的参数可以是任意类型指针，那么应声明其参数为void *
+
+典型的如内存操作函数memcpy 和memset 的函数原型分别为：
+
+```c
+void * memcpy(void *dest, const void *src, size_t len);
+void * memset ( void * buffer, int c, size_t num );
+```
+
+这样，任何类型的指针都可以传入memcpy 和memset 中，这也真实地体现了内存操作函数的意义，因为它操作的对象仅仅是一片内存，而不论这片内存是什么类型。如果memcpy和memset 的参数类型不是void *，而是char *，那才叫真的奇怪了！这样的memcpy 和memset明显不是一个“纯粹的，脱离低级趣味的”函数！
+
+下面的代码执行正确：
+
+例子：memset 接受任意类型指针
+
+```c
+int IntArray_a[100];
+memset (IntArray_a, 0, 100*sizeof(int) ); //将IntArray_a 清0
+```
+
+
+例子：memcpy 接受任意类型指针
+
+```c
+int destIntArray_a[100], srcintarray_a[100];
+//将srcintarray_a 拷贝给destIntArray_a
+memcpy (destIntArray_a, srcintarray_a, 100*sizeof(int) );
+```
+
+有趣的是，memcpy 和memset 函数返回的也是void *类型，标准库函数的编写者都不是一般人。
+
+### void 不能代表一个真实的变量
+
+因为定义变量时必须分配内存空间，定义void 类型变量，编译器到底分配多大的内存呢。
+
+下面代码都企图让void 代表一个真实的变量，因此都是错误的代码：
+
+```c
+void a; //错误
+function(void a); //错误
+```
+
+void 体现了一种抽象，这个世界上的变量都是“有类型”的，譬如一个人不是男人就是女人（人妖不算）。
+
+void 的出现只是为了一种抽象的需要，如果你正确地理解了面向对象中“抽象基类”的概念，也很容易理解void 数据类型。正如不能给抽象基类定义一个实例，我们也不能定义一个void（让我们类比的称void 为“抽象数据类型”）变量。
