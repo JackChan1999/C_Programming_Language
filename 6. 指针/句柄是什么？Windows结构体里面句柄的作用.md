@@ -4,7 +4,7 @@ typora-copy-images-to: images
 
 句柄是什么？在Windows中，句柄的存在就像指针的标识一样，但这样的答案显示不是你们需要的。闲暇之余，笔者摘录以下Windows句柄的解释。用户可以端着咖啡再看Windows结构体里面句柄的作用表述。
 
-![句柄](images/1500789261478.png)
+![1501079625123](images/1501079625123.png)
 
 这里我列举词条中的关于句柄的叙述不当之处，至于如何不当先不管，继续往下看就会明白：
 
@@ -32,7 +32,7 @@ MMU 的核心思想是利用虚拟地址替代物理地址，即CPU寻址时使�
 
 如下图：
 
-![句柄是什么？Windows结构体里面句柄的作用](http://pic.yupoo.com/kenwug/71903954ae71/custom.jpg)
+![句柄是什么？Windows结构体里面句柄的作用](images/handle1.jpg)
 
 从这张图中，可以清晰地看到CPU与页表，物理内存之间的交互关系。
 
@@ -44,7 +44,7 @@ MMU 的核心思想是利用虚拟地址替代物理地址，即CPU寻址时使�
 
 如下图：
 
-![句柄是什么？Windows结构体里面句柄的作用](http://pic.yupoo.com/kenwug/32349954ae71/custom.jpg)
+![句柄是什么？Windows结构体里面句柄的作用](images/handle2.jpg)
 
 在中间加入了TLB。
 
@@ -62,7 +62,7 @@ TLB是有限的，这点毫无疑问。当超出TLB的存储极限时，就会�
 
 首先说一说连续内存分配，我们在程序中经常需要分配一块连续的内存结构，如数组，他们可以使用指针循环读取，但是物理内存多次分配释放后实际上是破碎的，如下图
 
-![句柄是什么？Windows结构体里面句柄的作用](http://img.blog.csdn.net/20131229220145437?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2VuemhvdTEyMTk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+![句柄是什么？Windows结构体里面句柄的作用](images/handle3.png)
 
 图中白色为可用物理内存，黑色为被其他程序占有的内存，现在要分配一个12大小的连续内存，那么显然物理内存中是没有这么大的连续内存的，这时候通过页表对应的方式可以看到我们很容易得到逻辑地址上连续的12大小的内存。
 
@@ -70,11 +70,11 @@ TLB是有限的，这点毫无疑问。当超出TLB的存储极限时，就会�
 
 实际上这里的MOVABLE和FIXED都是针对的逻辑地址来说的。GMEM_MOVABLE是说允许操作系统（或者应用程序）实施对内存堆（逻辑地址）的管理，在必要时，操作系统可以移动内存块获取更大的块，或者合并一些空闲的内存块，也称“垃圾回收”，它可以提高内存的利用率，这里的地址都是指逻辑地址。同样以分配12大小连续的内存，在某种状态时，内存结构如下
 
-![句柄是什么？Windows结构体里面句柄的作用](http://img.blog.csdn.net/20131229223204890?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2VuemhvdTEyMTk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+![句柄是什么？Windows结构体里面句柄的作用](images/handle4.png)
 
 显然这时候是无法分配12连续大小的内存，但是如果这里的逻辑地址都指明为GMEM_MOVABLE的话，操作系统这时候会对逻辑地址做管理，得到如下结果：
 
-![句柄是什么？Windows结构体里面句柄的作用](http://img.blog.csdn.net/20131229223353406?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2VuemhvdTEyMTk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+![句柄是什么？Windows结构体里面句柄的作用](images/handle5.png)
 
 这时候就实现了逻辑地址的MOVE，相对比实现物理内存的移动，这样的代价当然要小得多撒，但是聪明的小伙伴们是不是要问，这样在逻辑地址中移动了内存，那么实际访问数据不都乱套了吗，还能找到自己分配的实际物理内存数据吗，等等，不要心急，这就是等下要讲的句柄做的事情了。
 
@@ -190,7 +190,7 @@ pGlobal和hGlobal不相等
 
 ## 总结：
 
-![句柄是什么？Windows结构体里面句柄的作用](http://img.blog.csdn.net/20131230103702500?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2VuemhvdTEyMTk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+![句柄是什么？Windows结构体里面句柄的作用](images/handle6.png)
 
 下面，我们再回头看一看博文开头说的叙述不当之处，说他们不当是因为不是完全错误：第一点，确实句柄有管理内存地址变动之用，但是并不只是这个作用，内核对象访问级别、文件是否打开都是和他相关的；第二点，指向指针的指针，看得出来作者也是认真思考了的，但是他忽略了句柄包含的其他功能和管理内存地址的作用。
 
